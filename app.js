@@ -40,3 +40,21 @@ async function fetchAllPokemonData() {
     const results = await Promise.all(requests);
     return results;
 }
+
+function renderAllPokemon(pokemonArray) {
+    const fragment = document.createDocumentFragment();
+    for (const pkm of pokemonArray) {
+        const card = document.createElement('div');
+        card.classList.add('pokemon');
+        card.setAttribute('data-id', pkm.id);
+        card.setAttribute('data-name', pkm.name);
+        const img = document.createElement('img');
+        img.src = pkm.sprite;
+        img.alt = `pokemon ${pkm.id}`;
+        const label = document.createElement('span');
+        label.innerText = `#${pkm.id} ${pkm.name}`;
+        card.appendChild(img);
+        card.appendChild(label);
+        fragment.appendChild(card);
+    }
+ }
