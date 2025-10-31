@@ -57,4 +57,21 @@ function renderAllPokemon(pokemonArray) {
         card.appendChild(label);
         fragment.appendChild(card);
     }
+
+    container.appendChild(fragment);
  }
+
+ async function init (){
+    try {
+        const allPokemon = await fetchAllPokemonData();
+        renderAllPokemon(allPokemon);
+    } catch (error) {
+        console.error('Error general al inicializar:', error);
+    } finally {
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
+    }
+ }
+
+ init();
